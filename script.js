@@ -11,6 +11,7 @@ function screenshot() {
 
 	html2canvas(capture,{backgroundColor:null,windowWidth:1920,windowHeight:1080}).then(canvas => {
 
+		/*
 		var imgSrc = canvas.toDataURL("image/png");
 		var img = document.createElement('img');
 		img.src = imgSrc;
@@ -18,6 +19,13 @@ function screenshot() {
 		document.getElementById("screenshot").classList.remove("hide");
 		document.getElementById("screenshot").innerHTML = "<p>Your image :</p>";
 		document.getElementById("screenshot").appendChild(img);
+		*/
+
+		var a = document.createElement("a");
+
+		a.href = canvas.toDataURL("image/png");
+		a.download = "limitedSyncPairs.png";
+		a.click();
 
 		if(parseInt(Array.from(document.getElementsByClassName("syncpair")).length) != parseInt(Array.from(document.getElementsByClassName("selected")).length)) {
 			document.getElementById('linkTool').classList.add("hide");
