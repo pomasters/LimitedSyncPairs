@@ -9,24 +9,23 @@ function screenshot() {
 		document.getElementById('count').classList.add("hide");
 	}
 
-	html2canvas(capture,{backgroundColor:null,windowWidth:1920,windowHeight:1080}).then(canvas => {
+	html2canvas(capture,{backgroundColor:null,windowWidth:1920,windowHeight:1080,allowTaint:true,useCORS:true}).then(canvas => {
 
-		canvas.toBlob((blob) => {
-			const newImg = document.createElement('img');
-			const url = URL.createObjectURL(blob);
+		var imgSrc = canvas.toDataURL("image/png");
+		var img = document.createElement('img');
+		img.src = imgSrc;
 
-			newImg.src = url;
+		var link = document.createElement("a");
+		link.download = "limitedSyncPairs.png";
+		link.href = imgSrc;
+		link.target = '_blank';
+		link.innerHTML = "Download";
 
-			var link = document.createElement("a");
-			link.download = "limitedSyncPairs.png";
-			link.href = url;
-			link.innerHTML = "Download";
-			
-			document.getElementById("screenshot").classList.remove("hide");
-			document.getElementById("screenshot").innerHTML = "<p>Your image :</p>";
-			document.getElementById("screenshot").appendChild(link);
-			document.getElementById("screenshot").appendChild(newImg);
-		});
+		document.getElementById("screenshot").classList.remove("hide");
+		document.getElementById("screenshot").innerHTML = "<p>Your image :</p>";
+		document.getElementById("screenshot").appendChild(link);
+		document.getElementById("screenshot").appendChild(img);
+
 
 		if(parseInt(Array.from(document.getElementsByClassName("syncpair")).length) != parseInt(Array.from(document.getElementsByClassName("selected")).length)) {
 			document.getElementById('linkTool').classList.add("hide");
