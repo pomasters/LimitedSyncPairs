@@ -11,21 +11,23 @@ function screenshot() {
 
 	html2canvas(capture,{backgroundColor:null,windowWidth:1920,windowHeight:1080,allowTaint:true,useCORS:true}).then(canvas => {
 
-		var imgSrc = canvas.toDataURL("image/png");
-		var img = document.createElement('img');
-		img.src = imgSrc;
+		canvas.toBlob((blob) => {
+			var newImg = document.createElement('img');
+			var url = URL.createObjectURL(blob);
 
-		var link = document.createElement("a");
-		link.download = "limitedSyncPairs.png";
-		link.href = imgSrc;
-		link.target = '_blank';
-		link.innerHTML = "Download";
+			newImg.src = url;
 
-		document.getElementById("screenshot").classList.remove("hide");
-		document.getElementById("screenshot").innerHTML = "<p>Your image :</p>";
-		document.getElementById("screenshot").appendChild(link);
-		document.getElementById("screenshot").appendChild(img);
+			var link = document.createElement("a");
+			link.download = "limitedSyncPairs.png";
+			link.href = url;
+			link.target = '_blank';
+			link.innerHTML = "Download";
 
+			document.getElementById("screenshot").classList.remove("hide");
+			document.getElementById("screenshot").innerHTML = "<p>Your image :</p>";
+			document.getElementById("screenshot").appendChild(link);
+			document.getElementById("screenshot").appendChild(newImg);
+		});
 
 		if(parseInt(Array.from(document.getElementsByClassName("syncpair")).length) != parseInt(Array.from(document.getElementsByClassName("selected")).length)) {
 			document.getElementById('linkTool').classList.add("hide");
