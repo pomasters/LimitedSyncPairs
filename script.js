@@ -40,6 +40,54 @@ function screenshot() {
 }
 
 
+function screenshot2() {
+
+	var capture = document.getElementById('capture');
+
+	if(parseInt(Array.from(document.getElementsByClassName("syncpair")).length) != parseInt(Array.from(document.getElementsByClassName("selected")).length)) {
+		document.getElementById('linkTool').classList.remove("hide");
+		document.getElementById('credits').classList.add("hide");
+	} else {
+		document.getElementById('count').classList.add("hide");
+	}
+
+	document.body.style.width = "1920px";
+
+	domtoimage.toPng(capture)
+	.then(function (dataUrl) {
+
+		document.getElementById("screenshot").classList.remove("hide");
+		document.getElementById("screenshot").innerHTML = "<p>Your image :</p>";
+
+		var newImg = document.createElement('img');
+		var link = document.createElement("a");
+
+		newImg.src = dataUrl;
+
+		link.href = dataUrl;
+		link.download = "limitedSyncPairs.png";
+
+		document.getElementById("screenshot").appendChild(newImg);
+
+		document.body.appendChild(link);
+		link.click();
+		document.body.removeChild(link);
+
+		document.body.removeAttribute("style");
+
+		if(parseInt(Array.from(document.getElementsByClassName("syncpair")).length) != parseInt(Array.from(document.getElementsByClassName("selected")).length)) {
+			document.getElementById('linkTool').classList.add("hide");
+			document.getElementById('credits').classList.remove("hide");
+		} else {
+			document.getElementById('count').classList.remove("hide");
+		}
+	})
+	.catch(function (error) {
+		console.log(error);
+	});
+}
+
+
 
 function saveCurrentSelection() {
 	var selected = [];
@@ -104,6 +152,8 @@ Array.from(document.getElementsByTagName("img")).forEach(e => e.addEventListener
 
 
 document.getElementById("btn_screenshot").addEventListener("click", screenshot)
+
+document.getElementById("btn_screenshot2").addEventListener("click", screenshot2)
 
 document.getElementById("btn_invertSelection").addEventListener("click", invertSelection)
 

@@ -118,6 +118,13 @@ table th {
 	text-decoration: none;
 }
 
+#syncPairsTrackerLink {
+	font-family: "kenya-NewRodinProN-B";
+	width: fit-content;
+	margin: 1% auto;
+	text-align: center;
+}
+
 
 #buttons {
 	width: 40%;
@@ -154,6 +161,16 @@ table th {
 	background: linear-gradient(#D1EC96, #B8F33B);
 }
 
+#infoImageBtn{
+	margin: auto;
+	width: auto;
+	text-align: center;
+	position: relative;
+	top: -10px;
+	font-family: 'kenya-NewRodinProN-B';
+	font-size: 14px;
+	color: #27646E;
+}
 
 #screenshot {
 	width: 70%;
@@ -174,10 +191,8 @@ table th {
 
 
 @media only screen and (max-width: 1024px) {
-	h1 { font-size: 25px; }
 	h2 { font-size: 18px; }
 	h3 { font-size: 14px; }
-	.syncpair {	width: 70px; }
 	#screenshot { width: 100%; margin-bottom: 0 !important; }
 	#screenshot img { margin-bottom: 0 !important; }
 }
