@@ -99,8 +99,14 @@ table th {
 	animation: anim 1s infinite;
 }
 
-.monthly {
-	filter: grayscale(1);
+.variety {
+	background-color: rgb(0 129 60 / 10%);
+	border-radius: 10px;
+}
+
+.variety p {
+	margin: 0;
+	padding: 0;
 }
 
 @keyframes anim {
