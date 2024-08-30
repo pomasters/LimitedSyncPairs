@@ -84,6 +84,7 @@ table th {
 .support { background-color: rgb(64 64 255 / 10%); }
 .sprint { background-color: rgb(255 64 64 / 10%); }
 .field { background-color: rgb(255 64 255 / 10%); }
+.multi { background-color: rgb(255 244 188 / 10%); }
 
 .syncpair {
 	width: 100px;
